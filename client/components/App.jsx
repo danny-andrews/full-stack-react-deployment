@@ -1,24 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
+import { Route, Routes } from "react-router-dom";
+import Info from "./Info.jsx";
+import Tasks from "./Tasks.jsx";
 
 const App = () => {
-  const [tasks, setTasks] = useState([]);
-
-  useEffect(() => {
-    fetch("/api/tasks")
-      .then((res) => res.json())
-      .then((tasks) => {
-        setTasks(tasks);
-      });
-  }, []);
-
   return (
-    <main>
-      {tasks.map((task) => (
-        <span className="task" key={task.id}>
-          {task.description}
-        </span>
-      ))}
-    </main>
+    <Routes>
+      <Route path="/" element={<Tasks />} />
+      <Route path="/info" element={<Info />} />
+    </Routes>
   );
 };
 
